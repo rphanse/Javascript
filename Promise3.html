@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>    
+    <div >
+       <button onclick="Show()"> Show Product </button>
+    </div>
+    <div class="Productdata">
+    </div>
+    <script>
+        function Show(){
+            fetch("https://dummyjson.com/products")
+            .then((response) => response.json())
+            .then((finalResult) => {
+                console.log(finalResult.products);
+
+                let str = "";
+                finalResult.products.forEach((product) => {
+                str = str +
+                ` <div> 
+                    <img src="${product.images[1]}" height='100px' width='100px'>
+                     ${product.title}
+                     ${product.category}
+                     ${product.price}
+                     ${product.rating}
+                </div>                                       
+              `;                              
+              document.querySelector(".Productdata").innerHTML = str;
+            });
+            });     
+         }
+    </script>
+</body>
+</html>
